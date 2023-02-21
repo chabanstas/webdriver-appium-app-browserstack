@@ -3,8 +3,8 @@ var browserstack = require('browserstack-local');
 exports.bs_local = new browserstack.Local();
   
 exports.config = {
-    user: process.env.BROWSERSTACK_USERNAME || 'dohej_iLvVgE',
-    key: process.env.BROWSERSTACK_ACCESS_KEY || '27aQ2PYVcrHxRo9c2giP',
+    user: process.env.BROWSERSTACK_USERNAME || 'user_name',
+    key: process.env.BROWSERSTACK_ACCESS_KEY || 'access_key',
 
     updateJob: false,
     
@@ -20,7 +20,7 @@ exports.config = {
         name: 'first_test',
         device: 'Google Pixel 3',
         os_version: "9.0",
-        app: process.env.BROWSERSTACK_APP_ID || 'bs://2d21bbf63c36309f5703dce5a7683d1580443b73',
+        app: process.env.BROWSERSTACK_APP_ID || 'bs://<app_id>',
         'browserstack.local': true,
         'browserstack.debug': true
       },
