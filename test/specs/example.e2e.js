@@ -1,9 +1,14 @@
- describe('My First demo appp testing', () => {
-    it('should open and wait', async () => {
-     await $(`~Forms`).click();
-     await $(`//android.widget.EditText[@content-desc="text-input"]`).setValue(`someRandom a123`);
+const LoginPage = require('../pageobjects/login.page')
+const SecurePage = require('../pageobjects/secure.page')
 
-     await browser.pause(3000);
+describe('My Login application', () => {
+    it('should login with valid credentials', async () => {
+        await LoginPage.open()
+
+        await LoginPage.login('tomsmith', 'SuperSecretPassword!')
+        await expect(SecurePage.flashAlert).toBeExisting()
+        await expect(SecurePage.flashAlert).toHaveTextContaining(
+            'You logged into a secure area!')
     })
 })
 
