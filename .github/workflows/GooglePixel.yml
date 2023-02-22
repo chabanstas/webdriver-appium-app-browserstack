@@ -1,0 +1,29 @@
+name: Testing for App with BrowserStack (Google Pixel device)
+on: 
+  push:
+    branches: master
+  pull_request:
+    branches: master
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+    - name: Install dependencies
+      run: npm install
+    - name: Run all tests
+      run: npm run wdio-google-pixel
+      env:
+          CI: true
+          USERNAME: ${{ secrets.USERNAME }}
+          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+    - uses: actions/checkout@v2
+      if: always()
+      with:
+        repository: chabanstas/webdriver-appium-app-browserstack
+        ref:  report
+        path: ./docs
